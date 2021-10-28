@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>常见问题 | JokerLZL</title>
+  <meta name="author" content="JokerLZL" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="常见问题" />
+  
+  <meta name="description" content="1、Vue组件间的参数传递父组件与子组件传值1.父组件—&gt;子组件：父组件传值给子组件使用Props属性2.子组件—&gt;父组件：子组件传值给父组件使用Emit事件。3.非父子组件间的数据传递（兄弟组件传值）eventBus 2、js中null与undefined的区别null是一个表示”无”的对象，转为数值时为0；undefined是一个表示”无”的原始值，转为数值时为NaN。 3、js中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见问题">
+<meta property="og:url" content="http://example.com/2021/10/26/problem/index.html">
+<meta property="og:site_name" content="JokerLZL">
+<meta property="og:description" content="1、Vue组件间的参数传递父组件与子组件传值1.父组件—&gt;子组件：父组件传值给子组件使用Props属性2.子组件—&gt;父组件：子组件传值给父组件使用Emit事件。3.非父子组件间的数据传递（兄弟组件传值）eventBus 2、js中null与undefined的区别null是一个表示”无”的对象，转为数值时为0；undefined是一个表示”无”的原始值，转为数值时为NaN。 3、js中">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/null">
+<meta property="article:published_time" content="2021-10-26T13:42:51.000Z">
+<meta property="article:modified_time" content="2021-10-28T13:36:45.721Z">
+<meta property="article:author" content="JokerLZL">
+<meta property="article:tag" content="常见问题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" type="text/css" media="all">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/about"><i class="fa fa-paw"></i>留言板</a></li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">JokerLZL</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>JokerLZL</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-lg-8 col-md-12">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">常见问题</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2021-10-26</li>
+                <li><i class="fa fa-user"></i> 作者 JokerLZL</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~28.75K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1635428205721"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+            <hr />
+            <h3 id="1、Vue组件间的参数传递"><a href="#1、Vue组件间的参数传递" class="headerlink" title="1、Vue组件间的参数传递"></a>1、Vue组件间的参数传递</h3><p>父组件与子组件传值<br>1.父组件—&gt;子组件：父组件传值给子组件使用Props属性<br>2.子组件—&gt;父组件：子组件传值给父组件使用Emit事件。<br>3.非父子组件间的数据传递（兄弟组件传值）eventBus</p>
+<h3 id="2、js中null与undefined的区别"><a href="#2、js中null与undefined的区别" class="headerlink" title="2、js中null与undefined的区别"></a>2、js中null与undefined的区别</h3><p>null是一个表示”无”的对象，转为数值时为0；undefined是一个表示”无”的原始值，转为数值时为NaN。</p>
+<h3 id="3、js中常用的Math方法"><a href="#3、js中常用的Math方法" class="headerlink" title="3、js中常用的Math方法"></a>3、js中常用的Math方法</h3><p>答：1.min()和max()方法  最大值最小值<br>Math.ceil()向上取整</p>
+<p>Math.floor()向下取整</p>
+<p>Math.round()四舍五入<br>Math.random() 随机数</p>
+<h3 id="4、js-延迟加载的方式有哪些"><a href="#4、js-延迟加载的方式有哪些" class="headerlink" title="4、js 延迟加载的方式有哪些"></a>4、js 延迟加载的方式有哪些</h3><p>defer 属性<br>async 属性<br>动态创建DOM方式<br>使用jQuery的getScript方法<br>使用setTimeout延迟方法<br>让JS最后加载<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a6762c3fd9fa">https://www.jianshu.com/p/a6762c3fd9fa</a></p>
+<h3 id="5、数组对象有哪些原生方法及作用，列举一下-不少于10个"><a href="#5、数组对象有哪些原生方法及作用，列举一下-不少于10个" class="headerlink" title="5、数组对象有哪些原生方法及作用，列举一下(不少于10个)"></a>5、数组对象有哪些原生方法及作用，列举一下(不少于10个)</h3><p>pop 删除数组第一个元素<br>push 在数组后面追加一个元素<br>shift 删除数组第一个元素<br>unshift 在数的前面添加元素<br>splice 删除 插入 修改的作用<br>index：规定从何处添加/删除元素。<br>howmany：规定应该删除多少元素。<br>elements：规定要添加到数组的新元素，从 index 所指的下标处开始插入<br>reverse 颠倒数组中元素的顺序<br>concat 合并数组<br>join 把数组拼接成字符串<br>slice  切割数组元素<br>indexOf 查找元素  找不到返回-1</p>
+<h3 id="6、vuex是什么？怎么使用？哪种功能场景使用它？核心概念？"><a href="#6、vuex是什么？怎么使用？哪种功能场景使用它？核心概念？" class="headerlink" title="6、vuex是什么？怎么使用？哪种功能场景使用它？核心概念？"></a>6、vuex是什么？怎么使用？哪种功能场景使用它？核心概念？</h3><p>vue框架中状态管理<br>,在main.js引入store，注入<br>场景有：单页应用中，组件之间的状态、音乐播放、登录状态、加入购物车<br>state<br>Vuex 使用单一状态树,即每个应用将仅仅包含一个store 实例，但单一状态树和模块化并不冲突。存放的数据状态，不可以直接修改里面的数据。<br>mutations<br>mutations定义的方法动态修改Vuex 的 store中的状态或数据。<br>getters<br>类似vue的计算属性，主要用来过滤一些数据。<br>action<br>actions可以理解为通过将mutations里面处里数据的方法变成可异步的处理数据的方法，简单的说就是异步操作数据。view 层通过 store.dispath 来分发 action。</p>
+<h3 id="7、JS原型，原型链-有什么特点？"><a href="#7、JS原型，原型链-有什么特点？" class="headerlink" title="7、JS原型，原型链 ? 有什么特点？"></a>7、JS原型，原型链 ? 有什么特点？</h3><p>每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，<br>如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，<br>于是就这样一直找下去，也就是我们平时所说的原型链的概念。<br>关系：instance.constructor.prototype = instance.<strong>proto</strong></p>
+<p>特点：<br>JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。</p>
+<h3 id="8、关于事件，IE与火狐的事件机制有什么区别？-如何阻止冒泡？"><a href="#8、关于事件，IE与火狐的事件机制有什么区别？-如何阻止冒泡？" class="headerlink" title="8、关于事件，IE与火狐的事件机制有什么区别？ 如何阻止冒泡？"></a>8、关于事件，IE与火狐的事件机制有什么区别？ 如何阻止冒泡？</h3><p>IE的事件流是冒泡流，而火狐同时支持冒泡流和捕获流。<br>阻止事件冒泡：ev.stopPropagation();<br>       旧 IE则是使用e.cancelBubble = true;</p>
+<h3 id="9、如何解决跨域问题"><a href="#9、如何解决跨域问题" class="headerlink" title="9、如何解决跨域问题?"></a>9、如何解决跨域问题?</h3><p>jsonp</p>
+<p>其大概原理是利用script/img/link等标签可以跨域取回文件的性质，来实现跨域的。</p>
+<p>cors(阔耳)</p>
+<p>这个是浏览器和服务器端共同合作去进行跨域的，浏览器端相关的接口有 fetch/xhr，并且这两者实现 cors 的跨</p>
+<h3 id="10、同步和异步的区别"><a href="#10、同步和异步的区别" class="headerlink" title="10、同步和异步的区别?"></a>10、同步和异步的区别?</h3><p>同步：</p>
+<p>同步的思想是：所有的操作都做完，才返回给用户。这样用户在线等待的时间太长，给用户一种卡死了的感觉（就是系统迁移中，点击了迁移，界面就不动了，但是程序还在执行，卡死了的感觉）。这种情况下，用户不能关闭界面，如果关闭了，即迁移程序就中断了。<br>简单来说，同步就是必须一件一件事做，等前一件做完了才能做下一件事。</p>
+<p>异步：</p>
+<p>将用户请求放入消息队列，并反馈给用户，系统迁移程序已经启动，你可以关闭浏览器了。然后程序再慢慢地去写入数据库去。这就是异步。但是用户没有卡死的感觉，会告诉你，你的请求系统已经响应了。你可以关闭界面了。</p>
+<p> 总结来说，同步和异步的区别：请求发出后，是否需要等待结果，才能继续执行其他操作。</p>
+<h3 id="11、vue-router中的路由钩子函数及参数作用"><a href="#11、vue-router中的路由钩子函数及参数作用" class="headerlink" title="11、vue-router中的路由钩子函数及参数作用"></a>11、vue-router中的路由钩子函数及参数作用</h3><p>1.全局钩子函数：beforeEach、afterEach<br>2.针对单个路由钩子函数：beforeEnter<br>3.组件级钩子函数：beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave<br>to：route即将进入的目标路由对象，<br>from：route当前导航正要离开的路由<br>next：function一定要调用该方法resolve这个钩子。执行效果依赖next方法的调用参数。可以控制网页的跳转。</p>
+<h3 id="12、-javascript-代码中的”use-strict”是什么意思-作用是什么？"><a href="#12、-javascript-代码中的”use-strict”是什么意思-作用是什么？" class="headerlink" title="12、 javascript 代码中的”use strict”是什么意思 ? 作用是什么？"></a>12、 javascript 代码中的”use strict”是什么意思 ? 作用是什么？</h3><p>除了正常模式运行外，ECMAscript添加了第二种运行模式：“严格模式”。<br>作用：</p>
+<ol>
+<li>消除js不合理，不严谨地方，减少怪异行为</li>
+<li>消除代码运行的不安全之处，</li>
+<li>提高编译器的效率，增加运行速度</li>
+<li>为未来的js新版本做铺垫。</li>
+</ol>
+<h3 id="13、-对JSON的了解？JSON对象的两个方法？"><a href="#13、-对JSON的了解？JSON对象的两个方法？" class="headerlink" title="13、 对JSON的了解？JSON对象的两个方法？"></a>13、 对JSON的了解？JSON对象的两个方法？</h3><p>全称：JavaScript Object Notation。 JSON中对象通过“{}”来标识，一个“{}”代表一个对象，如{“AreaId”:”123”}，对象的值是键值对的形式（key：value）。JSON是JS的一个严格的子集，一种轻量级的数据交换格式，类似于xml。数据格式简单，易于读写，占用带宽小。<br>两个方法：<br>JSON.parse(str)     解析JSON字符串 把JSON字符串变成JavaScript值或对象<br>JSON.stringify(obj)     将一个JavaScript值(对象或者数组)转换为一个 JSON字符串</p>
+<h3 id="14、JS的重绘与回流"><a href="#14、JS的重绘与回流" class="headerlink" title="14、JS的重绘与回流"></a>14、JS的重绘与回流</h3><p>重绘(repaint)：当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要 UI 层面的重新像素绘制，因此损耗较少。<br>回流(reflow)：又叫重排（layout）。当元素的尺寸、结构或者触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新经过计算，计算后还需要重新页面布局，因此是较重的操作。<br>重点：回流必定会触发重绘，重绘不一定会触发回流。重绘的开销较小，回流的代价较高。</p>
+<h3 id="15、JS哪些操作会造成内存泄露？"><a href="#15、JS哪些操作会造成内存泄露？" class="headerlink" title="15、JS哪些操作会造成内存泄露？"></a>15、JS哪些操作会造成内存泄露？</h3><p>1）意外的全局变量引起的内存泄露<br>2）闭包引起的内存泄露<br>3）没有清理的DOM元素引用<br>4）被遗忘的定时器或者回调<br>5）子元素存在引起的内存泄露</p>
+<h3 id="16、vue-router中的路由钩子函数及参数作用"><a href="#16、vue-router中的路由钩子函数及参数作用" class="headerlink" title="16、vue-router中的路由钩子函数及参数作用"></a>16、vue-router中的路由钩子函数及参数作用</h3><p>一）全局的</p>
+<p>（1）beforeEach - 前置钩子函数<br>参数to、from、next<br>to：去哪里<br>from：从哪里<br>next()：是否跳转由它决定<br>使用场景 - 未登录去下单，跳转到登录页<br>（2）afterEach - 后置钩子函数<br>参数to、from<br>to:去哪里<br>from:从哪来<br>使用场景 - 改变浏览器title<br>（二）单个路由独享的</p>
+<p>beforeEnter<br>参数to、from、next<br>同beforeEach<br>（三） 组件级的</p>
+<p>（1）beforeRouteEnter - 进入组件前<br>参数to、from、next<br>同beforeEach<br>使用场景 - 进入这个组件前你要做什么初始化操作<br>（2）beforeRouteUpdate - 组件更新或改变时<br>参数to、from、next<br>同beforeEach<br>使用场景 - 复用组件时（对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候）<br>（3）beforeRouteLeave - 离开组件时<br>参数to、from、next<br>同beforeEach<br>使用场景 - 清除定时器等等</p>
+<h3 id="17、-javascript-代码中的”use-strict”是什么意思-作用是什么？"><a href="#17、-javascript-代码中的”use-strict”是什么意思-作用是什么？" class="headerlink" title="17、 javascript 代码中的”use strict”是什么意思 ? 作用是什么？"></a>17、 javascript 代码中的”use strict”是什么意思 ? 作用是什么？</h3><p>严格模式<br>目的：<br>　　①添加更多报错的场合，消除代码的一些不安全之处，保证代码运行的安全。</p>
+<p>　　②提高编辑器效率，提高运行速度。</p>
+<p>　　③为新版本的JavaScript做铺垫。</p>
+<p>补充缺点：</p>
+<p>②IE9及以下都不支持。</p>
+<p>②在工作中，js代码都会进行压缩，有一些文件没有使用严格模式，而现在的文件使用了严格模式，当压缩后，新文件的’use strict’就到了文件的中间，不仅没有指示严格模式，反而在压缩后浪费了字节。</p>
+<h3 id="18、-对JSON的了解？JSON对象的两个方法？"><a href="#18、-对JSON的了解？JSON对象的两个方法？" class="headerlink" title="18、 对JSON的了解？JSON对象的两个方法？"></a>18、 对JSON的了解？JSON对象的两个方法？</h3><p>json，是一种数据格式，在与后端的数据交互中有较为广泛的应用<br>JSON.stringify( {} , [ ] , “”)，把js值转换为json字符串<br>.JSON.parse(json字符串)； 把json字符串反序列化为一个js值。</p>
+<h3 id="19、JS的重绘与回流"><a href="#19、JS的重绘与回流" class="headerlink" title="19、JS的重绘与回流"></a>19、JS的重绘与回流</h3><p>在说浏览器渲染页面之前，我们需要先了解两个点，一个叫 浏览器解析 URL，另一个就是本章节将涉及的 重绘与回流：<br>•重绘(repaint)：当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要 UI 层面的重新像素绘制，因此损耗较少。</p>
+<p>常见的重绘操作有：<br>1.改变元素颜色<br>2.改变元素背景色<br>3.more ……<br>•回流(reflow)：又叫重排（layout）。当元素的尺寸、结构或者触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新经过计算，计算后还需要重新页面布局，因此是较重的操作。</p>
+<p>常见的回流操作有：<br>1.页面初次渲染<br>2.浏览器窗口大小改变<br>3.元素尺寸/位置/内容发生改变<br>4.元素字体大小变化<br>5.添加或者删除可见的 DOM 元素<br>6.激活 CSS 伪类（:hover……）<br>7.more ……<br>•重点：回流必定会触发重绘，重绘不一定会触发回流。重绘的开销较小，回流的代价较高。</p>
+<h3 id="20、JS哪些操作会造成内存泄露？"><a href="#20、JS哪些操作会造成内存泄露？" class="headerlink" title="20、JS哪些操作会造成内存泄露？"></a>20、JS哪些操作会造成内存泄露？</h3><p>闭包,定时器,没有清理的DOM元素引用<br>1.setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。 2. 闭包 3. 控制台日志 4. 循环（在两个对象彼此引用且彼此保留时，就会产生一个循环）<br>21、v-show和v-if指令的区别？<br>答：v-if :生成或移除一个元素。<br>v-show:显示或者隐藏一个元素</p>
+<h3 id="22、渐进增强与优雅降级的理解？"><a href="#22、渐进增强与优雅降级的理解？" class="headerlink" title="22、渐进增强与优雅降级的理解？"></a>22、渐进增强与优雅降级的理解？</h3><p>渐进增强对浏览器的版本 向上兼容<br>优雅降级对浏览器的版本 向下兼容</p>
+<h3 id="23、JS-中继承实现的几种方式？"><a href="#23、JS-中继承实现的几种方式？" class="headerlink" title="23、JS 中继承实现的几种方式？"></a>23、JS 中继承实现的几种方式？</h3><p>原型链继承  将父类的实例作为子类的原型,<br>构造函数继承 使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类（没用到原型）,<br>组合继承 核心：通过调用父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用,<br>寄生组合继承 核心：通过寄生方式，砍掉父类的实例属性，这样，在调用两次父类的构造的时候，就不会初始化两次实例方法/属性，避免的组合继承的缺点,</p>
+<h3 id="说说写JavaScript的基本规范"><a href="#说说写JavaScript的基本规范" class="headerlink" title="说说写JavaScript的基本规范?"></a>说说写JavaScript的基本规范?</h3><ol>
+<li>不要在同一行声明多个变量</li>
+<li>使用 ===或!==来比较true/false或者数值</li>
+<li>switch必须带有default分支</li>
+<li>函数应该有返回值</li>
+<li>for if else 必须使用大括号</li>
+<li>语句结束加分号</li>
+<li>命名要有意义，使用驼峰命名法</li>
+</ol>
+<h3 id="25、Ajax-是什么-如何创建一个Ajax？"><a href="#25、Ajax-是什么-如何创建一个Ajax？" class="headerlink" title="25、Ajax 是什么? 如何创建一个Ajax？"></a>25、Ajax 是什么? 如何创建一个Ajax？</h3><p>ajax  是一种创建动态网页的技术<br>创建XMLHttpRequest  向服务器发送请求  处理服务器响应<br>(通过xmlHttpRequest获取内容)</p>
+<h3 id="26、说出几种vue当中的指令和它的用法？"><a href="#26、说出几种vue当中的指令和它的用法？" class="headerlink" title="26、说出几种vue当中的指令和它的用法？"></a>26、说出几种vue当中的指令和它的用法？</h3><p>v-model双向数据绑定<br> v-for循环<br>v-show 显示与隐藏<br>v-on事件绑定<br>v-bind：用来绑定属性</p>
+<h3 id="27、vue的两个核心点"><a href="#27、vue的两个核心点" class="headerlink" title="27、vue的两个核心点"></a>27、vue的两个核心点</h3><p>数据驱动：ViewModel，保证数据和视图的一致性。<br>组件系统：应用类UI可以看作全部是由组件树构成的。</p>
+<h3 id="28、DOM操作——怎样添加、移除、移动、复制、创建和查找节点"><a href="#28、DOM操作——怎样添加、移除、移动、复制、创建和查找节点" class="headerlink" title="28、DOM操作——怎样添加、移除、移动、复制、创建和查找节点?"></a>28、DOM操作——怎样添加、移除、移动、复制、创建和查找节点?</h3><p>createElement() //创建一个具体的元素<br>添加、移除、替换、插入<br>　　appendChild()</p>
+<p>　　removeChild()</p>
+<p>　　redplaceChild()</p>
+<p>　　insertBefore() //在已有的子节点前插入一个新的子节点<br>通过id查找元素<br>getElementById() //通过元素Id，唯一性</p>
+<h3 id="29、Js-有哪几种创建对象的方式"><a href="#29、Js-有哪几种创建对象的方式" class="headerlink" title="29、Js 有哪几种创建对象的方式"></a>29、Js 有哪几种创建对象的方式</h3><p>new Ｏbject()  实例化<br>使用字面量 {}  直接定义<br>工厂模式<br>构造函数模式（constructor）<br>原型模式（prototype）<br>构造函数+原型模式</p>
+<h3 id="30、描述js中的匿名函数及其作用"><a href="#30、描述js中的匿名函数及其作用" class="headerlink" title="30、描述js中的匿名函数及其作用"></a>30、描述js中的匿名函数及其作用</h3><p>匿名函数就是没有名字的函数<br>通过匿名函数可以实现闭包<br>模拟块级作用域，减少全局变量</p>
+<h3 id="31、vue中-key-值的作用？"><a href="#31、vue中-key-值的作用？" class="headerlink" title="31、vue中 key 值的作用？"></a>31、vue中 key 值的作用？</h3><p>1.可以高效的更新虚拟DOM<br>2.可以让vue使用相同标签名元素的过渡切换时,可以区分它们</p>
+<h3 id="32、请说出vue-cli项目中src目录每个文件夹和文件的用法？"><a href="#32、请说出vue-cli项目中src目录每个文件夹和文件的用法？" class="headerlink" title="32、请说出vue.cli项目中src目录每个文件夹和文件的用法？"></a>32、请说出vue.cli项目中src目录每个文件夹和文件的用法？</h3><p>1assets  阿瑟 文件夹是放静态资源<br>2components 看跑们 是放组件<br>3router 定义路由相关的配置<br>4view视图<br>5app.vue是一个应用主组件(就是最大的组件)<br>6main.js是入口文件</p>
+<h3 id="33、从输入URL到页面加载发生了什么？"><a href="#33、从输入URL到页面加载发生了什么？" class="headerlink" title="33、从输入URL到页面加载发生了什么？"></a>33、从输入URL到页面加载发生了什么？</h3><p>DNS解析<br>TCP连接<br>发送HTTP请求<br>服务器处理请求并返回HTTP报文<br>浏览器解析渲染页面<br>连接结束<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a877684a4cdd">https://www.jianshu.com/p/a877684a4cdd</a></p>
+<h3 id="34、HTTP与HTTPS有什么区别？"><a href="#34、HTTP与HTTPS有什么区别？" class="headerlink" title="34、HTTP与HTTPS有什么区别？"></a>34、HTTP与HTTPS有什么区别？</h3><p>1安全性不同 https是基于http开发的，简单的说https就是安全版的http<br>2端口不同 http使用的是80端口 https则使用的是443端口<br>3链接的形式的不同 一个加了S一个没加S  S是SSL也就是说加密 https是加密过得http<br>4是否有证书  https需要证书(大多数证书都是收费的) http没有证书</p>
+<h3 id="35、常用的js相应事件"><a href="#35、常用的js相应事件" class="headerlink" title="35、常用的js相应事件"></a>35、常用的js相应事件</h3><p>onLoad 加载事件  onClick点击事件  onkeydown 键盘按下事件 onkeyup键盘弹起 onBlur 不列 失去焦点<br>onFocus 佛出 获取焦点事件 onMouseOver鼠标悬浮 onMouseOut 鼠标离开<br>onMouseDown 鼠标按下 onMouseUp 鼠标弹起 onMouseMove  鼠标移动<br>onChange 当状态改变时触发，常用于select下拉选框<br>onSelect 文本框中的文本选中时触发 onSubmit 当表单提交时触发 onReset 表单重置时触发<br>onkeypress ：当键盘按下时触发（要快于onkeydown）</p>
+<h3 id="36、vue常用的事件修饰符"><a href="#36、vue常用的事件修饰符" class="headerlink" title="36、vue常用的事件修饰符"></a>36、vue常用的事件修饰符</h3><p>1..stop ：阻止冒泡<br>2..prevent ： 阻止默认事件<br>3. .capture 客土 在捕获阶段触发监听函数(就是冒泡发生先触发它)<br>即是给元素添加一个监听器，当元素发生冒泡时，先触发带有该修饰符的元素。<br>若有多个该修饰符，则由外而内触发。<br>就是谁有该事件修饰符，就先触发谁。<br>4.）. self 骚：将事件绑定到自身，只有自身才能触发，通常用于避免冒泡事件的影响<br>5..once    ones：事件只触发一次</p>
+<h3 id="37、js中事件冒泡的定义和解决冒泡事件"><a href="#37、js中事件冒泡的定义和解决冒泡事件" class="headerlink" title="37、js中事件冒泡的定义和解决冒泡事件"></a>37、js中事件冒泡的定义和解决冒泡事件</h3><p>事件源逐级向上传递<br>event.stopPropagation(); </p>
+<h3 id="38、js中递归的定义和实现方法？"><a href="#38、js中递归的定义和实现方法？" class="headerlink" title="38、js中递归的定义和实现方法？"></a>38、js中递归的定义和实现方法？</h3><p>递归函数是在通过名字调用自身的情况下构成的<br>函数中调用函数自己  在使用递归的时候一定需要有结束递归的条件，<br>否则就会变成死循环，直到浏览器崩溃</p>
+<h3 id="39、slice和splice-substr和substring有什么区别"><a href="#39、slice和splice-substr和substring有什么区别" class="headerlink" title="39、slice和splice,substr和substring有什么区别"></a>39、slice和splice,substr和substring有什么区别</h3><p>slice,substr,substring他们都接收两个参数<br>①slice（）：返回数组的一段。<br>②substr()：返回一个指定位置开始的指定长度的子字符串。<br>③substring():返回位于string对象中指定位置的子字符串。<br>splice()三个参数 可以实现增删改</p>
+<h3 id="40、平时主要使用到的ES6特性有哪些"><a href="#40、平时主要使用到的ES6特性有哪些" class="headerlink" title="40、平时主要使用到的ES6特性有哪些"></a>40、平时主要使用到的ES6特性有哪些</h3><p>1不一样的变量声明：const和let<br>2.模板字符串<br>3.箭头函数<br>4. 函数的参数默认值<br>5.Spread / Rest 操作符<br>当被用于迭代器中时，它是一个 Spread 操作符：<br>当被用于函数传参时，是一个 Rest 操作符<br>6.对象和数组解构<br>7.ES6中的类</p>
+<h3 id="41、vue优点？"><a href="#41、vue优点？" class="headerlink" title="41、vue优点？"></a>41、vue优点？</h3><p>轻量级框架  简单易学  双向数据绑定 组件化  视图,数据,结构分离<br>虚拟DOM   运行速度快</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mzrxLXR/article/details/81412574">https://blog.csdn.net/mzrxLXR/article/details/81412574</a></p>
+<p>虚拟DOM<br>dom操作时非常耗费性能的<br>不再使用原生的dom操作节点,极大解放dom操作,但具体操作的还是dom不过是换了另一种方式</p>
+<h3 id="42、分别简述computed和watch的使用场景"><a href="#42、分别简述computed和watch的使用场景" class="headerlink" title="42、分别简述computed和watch的使用场景"></a>42、分别简述computed和watch的使用场景</h3><p>computed 　　　　</p>
+<p>　　　　当一个属性受多个属性影响的时候就需要用到computed</p>
+<p>　　　　最典型的例子： 购物车商品结算的时候</p>
+<p>watch</p>
+<p>　　　　当一条数据影响多条数据的时候就需要用watch</p>
+<p>　　　　搜索数据</p>
+<h3 id="43、eval是做什么的？"><a href="#43、eval是做什么的？" class="headerlink" title="43、eval是做什么的？"></a>43、eval是做什么的？</h3><p>这个函数可以把一个字符串当作一个JavaScript表达式一样去执行</p>
+<h3 id="44、函数声明式和函数表达式区别"><a href="#44、函数声明式和函数表达式区别" class="headerlink" title="44、函数声明式和函数表达式区别"></a>44、函数声明式和函数表达式区别</h3><p>//函数声明式<br>function greeting(){<br>      console.log(“hello world”);<br>}</p>
+<p>//函数表达式<br>var greeting = function(){<br>    console.log(“hello world”);<br>}<br>以函数声明的方法定义的函数,函数名是必须的,而函数表达式的函数名是可选的<br>.以函数声明的方法定义的函数,函数可以在函数声明之前调用,而函数表达式的函数只能在声明之后调用<br>.以函数声明的方法定义的函数并不是真正的声明,它们仅仅可以出现在全局中,或者嵌套在其他的函数中,但是它们不能出现在循环<br>,条件或者try/catch/finally中,而函数表达式可以在任何地方声明。换句话说，函数声明不是一个完整的语句，所以不能出<br>现在if-else,for循环，finally，try catch语句以及with语句中。</p>
+<h3 id="45、函数的防抖和节流"><a href="#45、函数的防抖和节流" class="headerlink" title="45、函数的防抖和节流"></a>45、函数的防抖和节流</h3><p>所谓防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间。<br>所谓节流，就是指连续触发事件但是在 n 秒中只执行一次函数</p>
+<h3 id="46、单页面应用和多页面应用区别及优缺点"><a href="#46、单页面应用和多页面应用区别及优缺点" class="headerlink" title="46、单页面应用和多页面应用区别及优缺点"></a>46、单页面应用和多页面应用区别及优缺点</h3><p>单页面简称(SPA),原理:利用js感知到url的变化,可以通过js动态的将当前的页面内容清除掉,接着将下一个页面的内容挂载到当前的页面上,页面每次切换跳转时,并不需要做html请求,这样就节省了很多http发送延迟,切换速度更快.</p>
+<p>优点:加载速度快,内容的改变不需要重新加载整个页面,对服务器压力小</p>
+<p>前后端分离,视觉效果好</p>
+<p>缺点:页面初次加载比较慢,页面复杂提高很多</p>
+<p>多页面:一个应用多个页面,页面跳转时整个页面都刷新,每次都请求一个新的页面</p>
+<p>有点:SEO效果好</p>
+<p>缺点:页面切换慢,每次切换页面需要选择性的重新加载公共资源</p>
+<h3 id="47、axios的特点有哪些？"><a href="#47、axios的特点有哪些？" class="headerlink" title="47、axios的特点有哪些？"></a>47、axios的特点有哪些？</h3><p>1.从浏览器中创建XMLHttpRequests<br>2.node.js创建http请求<br>3.支持Promise API<br>4.拦截请求和响应<br>5.转换请求数据和响应数据<br>6.取消请求<br>7.自动换成json<br>axios中的发送字段的参数是data跟params两个<br>两者的区别在于params是跟请求地址一起发送的，data的作为一个请求体进行发送<br>params一般适用于get请求<br>data一般适用于post put 请求</p>
+<h3 id="48、axios有哪些常用方法？"><a href="#48、axios有哪些常用方法？" class="headerlink" title="48、axios有哪些常用方法？"></a>48、axios有哪些常用方法？</h3><p>执行get请求 get<br>执行post请求 post<br>执行并发请求 all<br>通过传递相关配置来进行请求<br>拦截器interceptors  in的赛吃</p>
+<h3 id="49、在循环中，break和continue语句的功能有何不同"><a href="#49、在循环中，break和continue语句的功能有何不同" class="headerlink" title="49、在循环中，break和continue语句的功能有何不同"></a>49、在循环中，break和continue语句的功能有何不同</h3><p>continue语句只结束本次循环，而不是终止整个循环的执行。</p>
+<p>2） break语句则是结束整个循环过程，不再判断执行循环的条件是否成立</p>
+<h3 id="50、JQuery中事件绑定的四种方法及其优缺点"><a href="#50、JQuery中事件绑定的四种方法及其优缺点" class="headerlink" title="50、JQuery中事件绑定的四种方法及其优缺点"></a>50、JQuery中事件绑定的四种方法及其优缺点</h3><p>JQuery中事件绑定的方法有bind、live、delegate、on</p>
+<p>bind()的优点：<br>可以向匹配的元素绑定一个或者多个事件处理器。</p>
+<p>bind()的缺点：<br>它会绑定事件到所有的选出来的元素上，当元素很多时，会出现效率问题；<br>当页面加载完的时候，你才可以进行bind()；<br>它不会绑定到在它执行完后动态添加的那些元素上。</p>
+<p>live的优点：<br>仅有一次的事件绑定，绑定到document上；<br>动态添加的elemtns依然可以触发那些早先绑定的事件，因为事件真正的绑定是在document上；<br>可以在document ready之前就可以绑定那些需要的事件。<br>live的缺点：<br>从jq1.7开始已经不被推荐了;<br>当一个元素采用live方法进行事件的绑定的时候，如果想阻止事件的传递或冒泡，就要在函数中return false,仅仅调用stopPropagation()是无法实现阻止事件的传递或者冒泡的,因为都要到达document，所以速度也会非常慢；</p>
+<p>delegate的优点：<br>可以选择把这个事件放到哪个元素上了，可以有效的减小你所要查找的元素；<br>可以用在动态添加的元素上。<br>delegate的缺点：<br>需要查找哪个元素上发生了那个事件，尽管比document少很多了，不过，还是得浪费时间来查找。</p>
+<p>on的优点：<br>提供了一种统一绑定事件的方法,可以用.on()来代替上述的3种方法。<br>one是在dom树加载后，对元素的绑定，和bind一样属于后期绑定，但是会在事件执行之后移除元素的绑定事件，事件只执行一次。</p>
+<p>on的缺点：<br>暂为收集</p>
+<h3 id="51-箭头函数有几个使用注意点。"><a href="#51-箭头函数有几个使用注意点。" class="headerlink" title="51.箭头函数有几个使用注意点。"></a>51.箭头函数有几个使用注意点。</h3><p>（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<p>（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</p>
+<p>（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。</p>
+<p>（4）不可以使用yield(u)命令，因此箭头函数不能用作 Generator(真呢累吃:生成器)   函数。</p>
+<h3 id="52、Vue中assets和static的区别"><a href="#52、Vue中assets和static的区别" class="headerlink" title="52、Vue中assets和static的区别"></a>52、Vue中assets和static的区别</h3><p>static :<br>该目录下的文件是不会被wabpack处理的<br>，它们会被直接复制到最终的打包目录下面（默认是 dist/static ）<br>，且必须使用绝对路径来引用这些文件。<br>assets:<br>assets 中的文件会经过 webpack 打包，重新编译</p>
+<h3 id="53、JQuery的特点（至少5点）"><a href="#53、JQuery的特点（至少5点）" class="headerlink" title="53、JQuery的特点（至少5点）"></a>53、JQuery的特点（至少5点）</h3><p>一款轻量级的js框架。<br>丰富的DOM选择器<br>链式表达式<br>Ajax操作支持<br>.跨浏览器兼容<br>插件扩展开发<br>可扩展性强<br>解决浏览器兼容性问题</p>
+<h3 id="54、jquery是如何去操作样式的"><a href="#54、jquery是如何去操作样式的" class="headerlink" title="54、jquery是如何去操作样式的"></a>54、jquery是如何去操作样式的</h3><p>在jquery中是如何操作样式的：<br>addClass()追加样式；<br>removeClass()删除样式；<br>toggle()切换样式；<br>hasClass（）判断样式；<br>attr（）获取或者设置样式；</p>
+<h3 id="55、jquery中的选择器有哪几种最常见"><a href="#55、jquery中的选择器有哪几种最常见" class="headerlink" title="55、jquery中的选择器有哪几种最常见"></a>55、jquery中的选择器有哪几种最常见</h3><p>ID选择器 #id<br>类选择器 .class<br>元素选择器 element<br>属性选择器   $(“a[id=’a1’]”);<br>组合选择器$(“.a2,#a3”);<br>包含选择器 $(“p.p1”);<br>匹配选择器  $(“li:eq(0)”,”ul.u1”)</p>
+<h3 id="56、-this-和-this-关键字在-jQuery-中有何不同？"><a href="#56、-this-和-this-关键字在-jQuery-中有何不同？" class="headerlink" title="56、$(this) 和 this 关键字在 jQuery 中有何不同？"></a>56、$(this) 和 this 关键字在 jQuery 中有何不同？</h3><p>this表示javascript的dom对象<br>$(this)表示把dom对象转换为jquery对象</p>
+<h3 id="57、vue项目实现路由按需加载-路由懒加载-的3种方式"><a href="#57、vue项目实现路由按需加载-路由懒加载-的3种方式" class="headerlink" title="57、vue项目实现路由按需加载(路由懒加载)的3种方式"></a>57、vue项目实现路由按需加载(路由懒加载)的3种方式</h3><p>1.vue异步组件<br>vue异步组件技术 ==== 异步加载<br>vue-router配置路由 , 使用vue的异步组件技术 , 可以实现按需加载 .<br>缺点:这种情况下一个组件生成一个js文件<br>2es提案的import()  路由懒加载(使用import)<br>3webpack的require,ensure”en(in)  sure”()<br>这种情况下，多个路由指定相同的chunkName，会合并打包成一个js文件。</p>
+<h3 id="58、ajax-请求的时候-get-和-post-方式的区别"><a href="#58、ajax-请求的时候-get-和-post-方式的区别" class="headerlink" title="58、ajax 请求的时候 get 和 post 方式的区别?"></a>58、ajax 请求的时候 get 和 post 方式的区别?</h3><p>get请求不安全，post安全</p>
+<p>get请求数据有限制（大约2kb），post无限制</p>
+<p>get请求参数会在url中显示，容易被他人窃取，post在请求体中，不会被窃取</p>
+<h3 id="59、form中input可以设置为readonly和disabled，有什么区别？"><a href="#59、form中input可以设置为readonly和disabled，有什么区别？" class="headerlink" title="59、form中input可以设置为readonly和disabled，有什么区别？"></a>59、form中input可以设置为readonly和disabled，有什么区别？</h3><p>答：readonly只针对input（text/password）和textarea有效，<br>而disabled对于所有的表单元素都有效，包括select,radio,checkbox等<br>表单在使用GET或POST方式提交时，表单元素在使用了readonly后，<br>值可以传递到后台；而表单元素在使用disabled后值不可以传递到后台</p>
+<h3 id="60、减少页面加载时间的方法（不少于5点）"><a href="#60、减少页面加载时间的方法（不少于5点）" class="headerlink" title="60、减少页面加载时间的方法（不少于5点）"></a>60、减少页面加载时间的方法（不少于5点）</h3><ol>
+<li>重复的HTTP请求数量应尽量减少</li>
+<li>压缩Javascript、CSS代码</li>
+<li>在文件头部放置css样式的定义</li>
+<li>在文件末尾放Javascript脚本</li>
+<li>css、javascript改由外部调用</li>
+<li>尽可能减少DCOM元素</li>
+<li>避免使用CSS脚本(CSS Expressions)</li>
+<li>添加文件过期或缓存头</li>
+<li>使用CDN(Content Delivery Network)网络加速</li>
+<li>服务器启用gzip压缩功能</li>
+<li>Ajax采用缓存调用</li>
+<li>Ajax调用尽量采用GET方法调用</li>
+<li>养成良好的开发维护习惯，尽量避免脚本重复调用</li>
+<li>缩减iframe的使用，如无必要，尽量不要使用</li>
+<li>优化图片文件(缩略图)</li>
+</ol>
+<h3 id="62、dom选择器优先级是什么，以及权重值计算"><a href="#62、dom选择器优先级是什么，以及权重值计算" class="headerlink" title="62、dom选择器优先级是什么，以及权重值计算"></a>62、dom选择器优先级是什么，以及权重值计算</h3><p>优先级就是分配给指定的 CSS 声明的一个权重<br>!important &gt; 行内样式 &gt; ID选择器 &gt; 类选择器 &gt; 元素 &gt; 通配符 &gt; 继承 &gt; 浏览器默认属性<br>1.行内样式 1000<br>2.id 0100<br>3.类选择器、伪类选择器、属性选择器[type=”text”] 0010<br>4.标签选择器、伪元素选择器(::first-line) 0001<br>5.通配符*、子选择器、相邻选择器 0000</p>
+<h3 id="63、浏览器标准模式和怪异模式之间的区别是什么"><a href="#63、浏览器标准模式和怪异模式之间的区别是什么" class="headerlink" title="63、浏览器标准模式和怪异模式之间的区别是什么?"></a>63、浏览器标准模式和怪异模式之间的区别是什么?</h3><p>标准模式：是浏览器按照W3C标准解析执行代码，这样用规定的语法去渲染，就可以兼容各个浏览器，保证以正确的形式展示网页。<br>怪异模式：是使用浏览器自己的方式解析执行代码，因为不同浏览器解析执行的方式不一样，所以我们称之为怪异模式。</p>
+<h3 id="64、静态布局、流式布局、响应式布局、弹性布局的优缺点"><a href="#64、静态布局、流式布局、响应式布局、弹性布局的优缺点" class="headerlink" title="64、静态布局、流式布局、响应式布局、弹性布局的优缺点"></a>64、静态布局、流式布局、响应式布局、弹性布局的优缺点</h3><p>静态布局   即传统Web设计，网页上的所有元素的尺寸一律使用px作为单位。<br>优点：这种布局方式对设计师和CSS编写者来说都是最简单的，亦没有兼容性问题。<br>缺点：显而易见，即不能根据用户的屏幕尺寸做出不同的表现。</p>
+<p>流式布局<br>优点：这种布局方式在Web前端开发的早期历史上，用来应对不同尺寸的PC屏幕（那时屏幕尺寸的差异不会太大），在当今的移动端开发也是常用布局方式<br>缺点：主要的问题是如果屏幕尺度跨度太大，那么在相对其原始设计<br>而言过小或过大的屏幕上不能正常显示。因为宽度使用%百分比定义，<br>但是高度和文字大小等大都是用px来固定，所以在大屏幕的手机下显<br>示效果会变成有些页面元素宽度被拉的很长，但是高度、文字大小还<br>是和原来一样（即，这些东西无法变得“流式”），显示非常不协调。</p>
+<p>响应式布局<br>优点：适应pc和移动端，如果足够耐心，效果完美<br>缺点：媒体查询是有限的，也就是可以枚举出来的，只能适应主流的宽高。（2）要匹配足够多的屏幕大小，工作量不小，设计也需要多个版本。</p>
+<p>flex布局优缺点<br>优点在于其容易上手，根据flex规则很容易达到某个布局效果。<br>缺点是：浏览器兼容性比较差，只能兼容到ie9及以上。</p>
+<h3 id="65、js中四种定位的区别"><a href="#65、js中四种定位的区别" class="headerlink" title="65、js中四种定位的区别"></a>65、js中四种定位的区别</h3><p>1、默认static<br>（1）static表示没有定位，或者说不算具有定位属性。<br>相对定位relative<br>占据空间，相对于自身原有位置进行偏移，可能会覆盖其他元素。<br>绝对定位absolute<br>不占空间，相对于最近的已定位的祖先元素, 有已定位(指position不是static的元素)祖先元素, 以最近的祖先元素为参考标准。如果无已定位祖先元素, 以body元素为偏移参照基准。<br>所以，父元素一般设置为相对定位<br>固定定位fixed<br>不占空间，相对于视窗来定位,这意味着即便页面滚动，它还是会停留在相同的位置。一个固定定位元素不会保留它原本在页面应有的空隙。</p>
+<h3 id="66、什么是同源策略"><a href="#66、什么是同源策略" class="headerlink" title="66、什么是同源策略"></a>66、什么是同源策略</h3><p>所谓的同源，指的是协议，域名，端口相同</p>
+<h3 id="67、js的forEach和map方法的区别"><a href="#67、js的forEach和map方法的区别" class="headerlink" title="67、js的forEach和map方法的区别"></a>67、js的forEach和map方法的区别</h3><p>forEach()返回值是undefined，不可以链式调用。<br>map()返回一个新数组，原数组不会改变。</p>
+<h3 id="68、js堆-栈与队列的定义，以及堆和栈的区别"><a href="#68、js堆-栈与队列的定义，以及堆和栈的区别" class="headerlink" title="68、js堆,栈与队列的定义，以及堆和栈的区别"></a>68、js堆,栈与队列的定义，以及堆和栈的区别</h3><p>在JS中，每一个数据都需要一个内存空间。内存空间又被分为两种，栈内存(stack)与堆内存(heap)。</p>
+<p>栈为自动分配的内存空间，它由系统自动释放<br>堆是动态分配的内存，大小不定也不会自动释放<br>也不是说不会自动释放，堆在没有引用的时候，下一次垃圾回收机制出现的时候会回收他的内存</p>
+<p>js 的变量分为基本类型和引用类型</p>
+<p>基本类型 （Undefined、Null、Boolean、Number和String）<br>基本类型在内存中占据空间小、大小固定 ，他们的值保存在栈(stack)空间，是按值来访问<br>引用类型 （对象、数组、函数）<br>引用类型占据空间大、大小不固定, 栈内存中存放地址指向堆(heap)内存中的对象。是按引用访问的</p>
+<h3 id="69、懒加载和预加载的定义与区别"><a href="#69、懒加载和预加载的定义与区别" class="headerlink" title="69、懒加载和预加载的定义与区别"></a>69、懒加载和预加载的定义与区别</h3><p>1.预加载</p>
+<p>1.1：预加载的理解<br>在加载的时候预先吧所有资源提前加载</p>
+<p>1.2:预加载的使用场景<br>需要追求运行效率的项目中，并且内存消耗率非常低的业务逻辑。用户可以体验非常极致的加载和刷新效果，使用预加载可以做到非常好的效果。</p>
+<p>2 懒加载</p>
+<p>2.1:懒加载的理解<br>懒加载就是说我们延迟他的加载，在我们使用资源的时候在进行加载</p>
+<p>2.2:懒加载的使用场景<br>我们在进行一些页面上有大量的图片资源，图片资源非常庞大，小的几kb打的几兆都有，<br>在这种情况下我们如果说进行一次性加载所有的资源不仅用户会等待很久而且还会造成<br>页面卡顿等状况。</p>
+<h3 id="70-懒加载和预加载的区别"><a href="#70-懒加载和预加载的区别" class="headerlink" title="70 懒加载和预加载的区别"></a>70 懒加载和预加载的区别</h3><p>首先懒加载和预加载是完全不同的，一个是提前加载资源，一个是延迟加载或者不加载，<br>懒加载会缓解一些服务器端和客户端内存的压力，预加载则会增加服务器端和客户端的<br>压力，但是两种加载模式有各自的适用场景各有自己的优势。</p>
+<h3 id="71、-document-ready-方法和window-onload有什么区别："><a href="#71、-document-ready-方法和window-onload有什么区别：" class="headerlink" title="71、.$(document).ready()方法和window.onload有什么区别："></a>71、.$(document).ready()方法和window.onload有什么区别：</h3><p>1.执行时间<br>        window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。<br>        $(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。<br>2.编写个数不同<br>         window.onload不能同时编写多个，如果有多个window.onload方法，只会执行一个<br>         $(document).ready()可以同时编写多个，并且都可以得到执行<br>3.简化写法<br>         window.onload没有简化写法<br>         $(document).ready(function(){})可以简写成$(function(){});</p>
+<h3 id="72、arguments的特点"><a href="#72、arguments的特点" class="headerlink" title="72、arguments的特点"></a>72、arguments的特点</h3><p>特性：<br>1 arguments 对象不是一个真正的数组，它类似于数组，没有数组所特有的属性和方法，除了length。例如没有pop 方法。不过可以将其转换为数组<br>2 arguments 对象仅在函数内部有效，在函数外部调用arguments对象会报错误。</p>
+<h3 id="73、var、let、const的区别"><a href="#73、var、let、const的区别" class="headerlink" title="73、var、let、const的区别"></a>73、var、let、const的区别</h3><p>1.var<br>var相比let就是管的比较宽，他的值可以被内部修改。<br>2.let<br>let是es6中新增定义,带有块级作用域，只会在所定义块生效。<br>3.const<br>const用来定义常量(可以是字符串，数组，函数，对象等)，并且初始值不可为空，但他并不是不可更改的</p>
+<h3 id="74、使用箭头函数应注意什么？"><a href="#74、使用箭头函数应注意什么？" class="headerlink" title="74、使用箭头函数应注意什么？"></a>74、使用箭头函数应注意什么？</h3><p>1， 箭头函数没有prototype(原型)，所以箭头函数本身没有this，<br>也就不能用call()、apply()、bind()这些方法去改变this的指向。<br>2， 箭头函数的this指向在定义的时候继承自外层第一个普通函数的this。<br>如果箭头函数外层没有普通函数，它的this会指向window(全局对象)<br>3，函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象<br>4， 箭头函数没有constructor，使用new调用箭头函数都会报错<br>5， 箭头函数的arguments  啊叫文<br>第一种情况：箭头函数的this指向全局对象，会报arguments未声明的错误。<br>第二种情况是：箭头函数的this如果指向普通函数,它的argumens继承于该普通函数。</p>
+<h3 id="75、forEach、for-in-、for-of三者的区别"><a href="#75、forEach、for-in-、for-of三者的区别" class="headerlink" title="75、forEach、for in 、for of三者的区别"></a>75、forEach、for in 、for of三者的区别</h3><p>for in是遍历对象的属性名，一般用作遍历json对象。<br>for of是遍历数组，forEach是属于Array类的原型方法，<br>数组实例可以使用，作用也是遍历数组元素，<br>for of只能获取当前遍历的元素，forEach通过回调<br>函数还能获取当前元素的下标。for of是属于循环操作，<br>可以break或return中断循环，而forEach由于它是一个回调<br>，所以不能做出中断操作，一旦遍历就会遍历整个数组</p>
+<h3 id="76、http常见状态码有那些，分别代表什么意思"><a href="#76、http常见状态码有那些，分别代表什么意思" class="headerlink" title="76、http常见状态码有那些，分别代表什么意思"></a>76、http常见状态码有那些，分别代表什么意思</h3><p>答：200 欢迎回来，主人 （正常；请求已完成。 ）</p>
+<p>301 人家搬家了 （已移动 — 请求的数据具有新的位置且更改是永久的。 ）</p>
+<p>307 不是这里，换个地方啦 （重新请求的URL，客户端自动重新请求新的地址）</p>
+<p>400 不要把奇怪的东西给人家嘛 （错误请求 — 请求中有语法问题，或不能满足请求。 ）</p>
+<p>403 这里不可以啦！（禁止 — 即使有授权也不需要访问。 ）</p>
+<p>404 这里什么都没有 — 人家是平的啦。 （找不到 — 服务器找不到给定的资源；文档不存在。 ）</p>
+<p>405 打开方式不对 （资源被禁止 ）</p>
+<p>414 这… 太长了啦  （请求 - URI 太长 ）</p>
+<p>418 我就是个杯具啊  （我是茶壶）</p>
+<h3 id="77、常见的浏览器内核有哪些"><a href="#77、常见的浏览器内核有哪些" class="headerlink" title="77、常见的浏览器内核有哪些"></a>77、常见的浏览器内核有哪些</h3><p>IE: trident 内核 Firefox：gecko (吉靠)内核 Safari:webkit 内核 Opera:以前是 presto(p列死to) 内核，Opera 现已改用 Google Chrome 的 Blink 内核 Chrome:Blink(基于 webkit，Google 与 Opera Software 共同开发) </p>
+<h3 id="78、MVC，MVP-和-MVVM-各部分之间的通信方式"><a href="#78、MVC，MVP-和-MVVM-各部分之间的通信方式" class="headerlink" title="78、MVC，MVP 和 MVVM 各部分之间的通信方式"></a>78、MVC，MVP 和 MVVM 各部分之间的通信方式</h3><p>MVC：是应用最广泛的软件架构之一。M(model模型)，V(view视图)，C(controller控制器)<br>1、View 传送指令到 Controller<br>2、Controller (看吐了)完成业务逻辑后，要求 Model 改变状态<br>3、Model 将新的数据发送到 View，用户得到反馈</p>
+<p>MVP：MVP 模式将 Controller 改名为Presenter( 控制器 p列神吃)，同时改变了通信方向。</p>
+<p>各部门之间的通信都是双向的，View和Model不发生联系，都通过presenter来进行传递</p>
+<p>MVVM：是前台程序的一种设计模式，是针对于MVC中V进行的更细致的分工 分成三部分 M (model) 数据、 V (view) 视图、 VM（view-model）逻辑用来协调model和view的</p>
+<h3 id="79，localStorage-session-cookie区别"><a href="#79，localStorage-session-cookie区别" class="headerlink" title="79，localStorage,session,cookie区别"></a>79，localStorage,session,cookie区别</h3><p>三者区别</p>
+<p>session和sessionStorage是有区别的<br>session保存在服务器上  记录客户状态的机制 和cookie是类似的</p>
+<p>1）存储大小</p>
+<p>cookie：一般不超过4K（因为每次http请求都会携带cookie、所以cookie只适合保存很小的数据，如会话标识）</p>
+<p>sessionStorage：5M或者更大</p>
+<p>localStorage：5M或者更大</p>
+<p>2）数据有效期</p>
+<p>cookie：一般由服务器生成，可以设置失效时间；若没有设置时间，关闭浏览器cookie失效，若设置了时间，cookie就会存放在硬盘里，过期才失效</p>
+<p>sessionStorage：仅在当前浏览器窗口关闭之前有效，关闭页面或者浏览器会被清除</p>
+<p>localStorage：永久有效，窗口或者浏览器关闭也会一直保存，除非手动永久清除，因此用作持久数据</p>
+<p>3）作用域</p>
+<p>cookie：在所有同源窗口中都是共享的</p>
+<p>sessionStorage：在同一个浏览器窗口是共享的（不同浏览器、同一个页面也是不共享的）</p>
+<p>localStorage：在所有同源窗口中都是共享的</p>
+<p>4）通信</p>
+<p>ccokie：十种携带在同源的http请求中，即使不需要，故cookie在浏览器和服务器之间来回传递；如果使用cookie保存过多数据会造成性能问题</p>
+<p>sessionStorage：仅在客户端（即浏览器）中保存，不参与和服务器的通信；不会自动把数据发送给服务器，仅在本地保存</p>
+<p>localStorage：仅在客户端（即浏览器）中保存，不参与和服务器的通信；不会自动把数据发送给服务器，仅在本地保存</p>
+<p>5）易用性</p>
+<p>cookie：需要自己进行封装，原生的cookie接口不够友好</p>
+<p>sessionStorage：原生接口可以接受，可以封装来对Object和Array有更好的支持</p>
+<p>localStorage：原生接口可以接受，可以封装来对Object和Array有更好的支持</p>
+<p>应用场景</p>
+<p>cookie：判断用户是否登录过网站，以便实现下次自动登录或记住密码；保存事件信息等</p>
+<p>sessionStorage：敏感账号一次性登录；单页面用的较多（sessionStorage 可以保证打开页面时 sessionStorage 的数据为空）</p>
+<p>localStorage：常用于长期登录（判断用户是否已登录），适合长期保存在本地的数据</p>
+<p>cookie与session的区别<br>Cookie数据存放在客户端，Session数据放在服务器端<br>Cookie的安全性一般，他人可通过分析存放在本地的Cookie并进行Cookie欺骗。在安全性第一的前提下，选择Session更优。重要交互信息比如权限等就要放在Session中，一般的信息记录放Cookie中<br>单个Cookie保存的数据不能超过4K，而Session原则上没有限制<br>Session会在一定时间内保存在服务器上。当访问增多，会比较占用你服务器的性能考虑到减轻服务器性能方面，应当使用Cookie。<br>Session 的运行依赖Session ID，而 Session ID 是存在 Cookie 中的，也就是说，如果浏览器禁用了 Cookie，Session 也会失效（但是可以通过其它方式实现，比如在 url 中传递 Session ID，也就是地址重写）</p>
+<h3 id="80，什么是深拷贝"><a href="#80，什么是深拷贝" class="headerlink" title="80，什么是深拷贝"></a>80，什么是深拷贝</h3><p>首先深复制和浅复制只针对像 Object, Array 这样的复杂对象的。简单来说，浅复制只复制一层对象的属性，而深复制则递归复制了所有层级。</p>
+<h3 id="81，浏览器从输入网址到页面显示出来过程发生了什么"><a href="#81，浏览器从输入网址到页面显示出来过程发生了什么" class="headerlink" title="81，浏览器从输入网址到页面显示出来过程发生了什么"></a>81，浏览器从输入网址到页面显示出来过程发生了什么</h3><p>域名解析（获得IP地址）<br>向WEB服务器发送HTTP请求<br>服务器处理请求<br>服务器返回HTTP响应<br>浏览器显示页面信息</p>
+<h3 id="82，浏览器得到一个html文件是怎样解析的"><a href="#82，浏览器得到一个html文件是怎样解析的" class="headerlink" title="82，浏览器得到一个html文件是怎样解析的"></a>82，浏览器得到一个html文件是怎样解析的</h3><p>浏览器加载和渲染html的顺序</p>
+<ol>
+<li>IE下载的顺序是从上到下，渲染的顺序也是从上到下，下载和渲染是同时进行的。</li>
+<li>在渲染到页面的某一部分时，其上面的所有部分都已经下载完成（并不是说所有相关联的元素都已经下载完）。</li>
+<li>如果遇到语义解释性的标签嵌入文件（JS脚本，CSS样式），那么此时IE的下载过程会启用单独连接进行下载。</li>
+<li>样式表在下载完成后，将和以前下载的所有样式表一起进行解析，解析完成后，将对此前所有元素（含以前已经渲染的）重新进行渲染。</li>
+<li>JS、CSS中如有重定义，后定义函数将覆盖前定义函数。</li>
+</ol>
+<h3 id="83，重绘与回流"><a href="#83，重绘与回流" class="headerlink" title="83，重绘与回流"></a>83，重绘与回流</h3><p>什么是回流<br>当render tree中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流(reflow)。每个页面至少需要一次回流，就是在页面第一次加载的时候，这时候是一定会发生回流的，因为要构建render tree。在回流的时候，浏览器会使渲染树中受到影响的部分失效，并重新构造这部分渲染树，完成回流后，浏览器会重新绘制受影响的部分到屏幕中，该过程成为重绘。</p>
+<p>什么是重绘<br>当render tree中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如background-color。则就叫称为重绘。</p>
+<p>区别：<br>他们的区别很大：<br>回流必将引起重绘，而重绘不一定会引起回流。比如：只有颜色改变的时候就只会发生重绘而不会引起回流<br>当页面布局和几何属性改变时就需要回流<br>比如：添加或者删除可见的DOM元素，元素位置改变，元素尺寸改变——边距、填充、边框、宽度和高度，内容改变</p>
+<h3 id="84，http和tcp有什么关系"><a href="#84，http和tcp有什么关系" class="headerlink" title="84，http和tcp有什么关系"></a>84，http和tcp有什么关系</h3><p>TCP属于运输层的一个很重要的协议，负责提供应用进程之间的通信。而HTTP属于应用层上的一种协议。在你发袭送一个请求网页的请求数据包中。包含你所请求的服务类型，用TCP报文的头部中的目的端口百号标出。比如HTTP的默认端口号为80，则度在TCP报文的头部就以80作为目的端口号，而用随机产生的一个从0到1023的数据作为你本地计算机应用问进程所用的原端口号。服务器收到该请求后，就一步一步的解析，最终会将结果返回给你答。</p>
+<h3 id="85，http请求由哪几部分构成"><a href="#85，http请求由哪几部分构成" class="headerlink" title="85，http请求由哪几部分构成"></a>85，http请求由哪几部分构成</h3><p>答：HTTP 请求（request）由三部分组成，分别是：请求行、(请求头)消息报头、(请求体)请求正文</p>
+<h3 id="86，vue首屏加载比较慢怎么办"><a href="#86，vue首屏加载比较慢怎么办" class="headerlink" title="86，vue首屏加载比较慢怎么办"></a>86，vue首屏加载比较慢怎么办</h3><p>1.Vue-router懒加载<br>1.什么是Vue-router懒加载？Vue-router懒加载就是按需加载组件，只有当路由被访问时才会加载对应的组件，而不是在加载首页的时候就加载，项目越大，对首屏加载的速度提升得越明显<br>2.使用CDN加速<br>在做项目时，我们会用到很多库，采用cdn加载可以加快加载速度。详情可以查看Vue项目使用CDN优化首屏加载。<br>3. gzip压缩<br>4.异步加载组件<br> 这里已经有前人栽好树，我们直接右转就可以了。vue异步组件(高级异步组件)使用场景及实践。<br> 5.服务端渲染<br>使用pug/jade、ejs、vue通用应用框架Nuxt等等都可以实现后端渲染，并且后端渲染还能对seo优化起到作用。这里配上Nuxt.js中文官网。</p>
+<h3 id="87，了解webpack吗"><a href="#87，了解webpack吗" class="headerlink" title="87，了解webpack吗"></a>87，了解webpack吗</h3><p>webpack就是个前端打包工具<br>作用<br>打包：可以把多个Javascript文件打包成一个文件，减少服务器压力和下载带宽。<br>转换：把拓展语言转换成为普通的JavaScript，让浏览器顺利运行。<br>优化：前端变的越来越复杂后，性能也会遇到问题，而WebPack也开始肩负起了优化和提升性能的责任。</p>
+<p>四大核心概念<br>入口(entry)(安吃力)  生成一个依赖图，在这里面配置一个起点（或多个入口起点），默认’./src’<br>输出(output)(out put)  输出创建的bundles(邦德),以及如何命名这些文件，默认”./dist”。通过配置output<br>loader  oader 让 webpack 能够去处理那些非 JavaScript 文件（webpack 自身只理解 JavaScript）。loader 可以将所有类型的文件转换为 webpack 能够处理的有效模块<br>，然后你就可以利用 webpack 的打包能力，对它们进行处理。<br>插件(plugins)(怕根) oader 被用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。插件的范围包括，<br>从打包优化和压缩，一直到重新定义环境中的变量。插件接口功能极其强大，可以用来处理各种各样的任务。</p>
+<h3 id="88-js的垃圾回收机制"><a href="#88-js的垃圾回收机制" class="headerlink" title="88.js的垃圾回收机制"></a>88.js的垃圾回收机制</h3><p>原理</p>
+<p>找到不再被使用的变量，然后释放其占用的内存，但这个过程不是时时的，因为其开销比较大，</p>
+<p>所以垃圾回收器会按照固定时间间隔周期性的执行</p>
+<p>作用是为了防止内存泄漏<br>js的垃圾回收机制有两种 标记清除、引用计数<br>a.标记清除<br>当变量进入环境时，将这个变量标记为“进入环境”;当变量离开环境时，则将其标记为“离开环境”。<br>b.引入计数(低级浏览器)</p>
+<p>当变量声明，第一次赋值时记为1，然后当这个变量值改变时，记录为0，将计数为0的回收<br>标记“离开环境”的就回收内存</p>
+<h3 id="89-slice-splice-substr-substring-的区别"><a href="#89-slice-splice-substr-substring-的区别" class="headerlink" title="89.slice  splice  substr substring 的区别"></a>89.slice  splice  substr substring 的区别</h3><p>slice 截取数组 返回新数组 不改变原数组<br>splice 从数组中添加或删除元素 改变原来的数组 返回被删除的元素<br>substr 截取两个指定索引之间的数组<br>substring 和substr类似 但是第二个参数是字符串的长度</p>
+<h3 id="90-setTimeout-promise-Async-Await的区别"><a href="#90-setTimeout-promise-Async-Await的区别" class="headerlink" title="90.setTimeout promise Async/Await的区别"></a>90.setTimeout promise Async/Await的区别</h3><p>首先我们谈谈Event Loop(事件循环)。：先执行一个宏任务如果有微任务的把全部宏任务执行  没有就进入下一个新的宏任务<br>setTimeout是一个macro(宏 麦考)任务<br>promise、和await后续为micro(微 麦克)任务<br>所以在执行顺序上会先进行同步代码，再者Promise、Async/Await，最后setTimeout。</p>
+<p>谈谈Promise、Async/Await差异<br>promise是resolve为异步方法，将放入微任务队里里执行，<br>但是resolve前后的正常代码为同步代码；<br>Async/Await会返回一个promise，await 的顺序是从右往左的，<br>也就是说await 右边的方法也优先执行同步代码，再让出线程，<br>进入微任务队列，<br>await下面的代码可以理解为promise then里面的代码。</p>
+<p>了解了什么是宏任务和微任务，就好理解多了，首先执行 宏任务 =&gt; 微任务的Event Queue =&gt; 宏任务的Event Queue</p>
+<p>JavaScript的事件分两种，宏任务(macro-task)和微任务(micro-task)</p>
+<p>宏任务：包括整体代码script，setTimeout，setInterval<br>微任务：Promise.then(非new Promise)，process.nextTick(node中)<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/yun_hou/article/details/88697954">https://blog.csdn.net/yun_hou/article/details/88697954</a></p>
+<h3 id="91-你知道响应布局有几种事项方式吗"><a href="#91-你知道响应布局有几种事项方式吗" class="headerlink" title="91.你知道响应布局有几种事项方式吗?"></a>91.你知道响应布局有几种事项方式吗?</h3><p>百分比布局(流式布局)<br>弹性盒子(flex布局)<br>媒体查询+rem(rem布局)</p>
+<h3 id="92-ES6的新增语法有什么"><a href="#92-ES6的新增语法有什么" class="headerlink" title="92.ES6的新增语法有什么"></a>92.ES6的新增语法有什么</h3><p>const let<br>箭头函数<br>数组对象结构<br>class<br>.参数的默认值<br>扩展运算符：…</p>
+<h3 id="93vue框架的优势"><a href="#93vue框架的优势" class="headerlink" title="93vue框架的优势"></a>93vue框架的优势</h3><p>  Vue.js是一个轻巧、高性能、可组件化的MVVM库，<br>同时拥有非常容易上手的API；</p>
+<h3 id="94是否了解ajax-能说下ajax中-有多少种请求方式吗"><a href="#94是否了解ajax-能说下ajax中-有多少种请求方式吗" class="headerlink" title="94是否了解ajax,能说下ajax中,有多少种请求方式吗"></a>94是否了解ajax,能说下ajax中,有多少种请求方式吗</h3><p>Ajax 是一种异步请求数据的一种技术，对于改善用户的体验和程序的性能很有帮助<br>ajax的优点：在不刷新整个页面的前提下与服务器通信维护数据<br>有两种请求方式 get post<br>95ajax,http请求的详细过程<br>ajax</p>
+<p>(1)创建<code>XMLHttpRequest</code>对象,也就是创建一个异步调用对象；</p>
+<p>(2)创建一个新的<code>HTTP</code>请求,并指定该<code>HTTP</code>请求的方式、<code>URL</code>及验证信息；</p>
+<p>(3)设置响应<code>HTTP</code>请求状态变化的函数；</p>
+<p>(4)发送<code>HTTP</code>请求；</p>
+<p>(5)获取异步调用返回的数据；</p>
+<p>(6)使用JavaScript和DOM实现局部刷新。</p>
+<p>http<br>（1）建立TCP连接<br>（2） Web浏览器向Web服务器发送请求命令<br>（3） Web服务器应答<br>（4）Web服务器关闭TCP连接<br>（5）浏览器接受到服务器响应的数据</p>
+<p>总结<br>浏览器发起请求-&gt;<br>解析域名得到ip进行TCP连接 -&gt;<br>浏览器发送HTTP请求和头信息发送-&gt;<br>服务器对浏览器进行应答，响应头信息和浏览器所需的内容-&gt;<br> 关闭TCP连接或保持-&gt;<br>浏览器得到数据数据进行操作</p>
+<h3 id="96如何解决跨域问题"><a href="#96如何解决跨域问题" class="headerlink" title="96如何解决跨域问题"></a>96如何解决跨域问题</h3><p>方法一：通过设置后端的cors允许跨域<br>方法二：通过JsonP<br>方法三：通过nginx反向代理</p>
+<p>5uft-8有什么用 不用utf-8可以用什么?<br>“UTF-8” 是一种字符编码,UTF-8 的作用就是让浏览器做好翻译工作,<br>防止浏览器出现中文乱码<br>其他编码<br>gb2312: 代表国家标准第2312条（不包含繁体）<br>gbk：国家标准扩展板（增加了繁体，包含所有亚洲字符集）<br>unicode：万国码(UTF-8就是unicode的升级版啦)</p>
+<h3 id="97-给定一个宽高未知的div-一个img-如何让img在div中-垂直居中"><a href="#97-给定一个宽高未知的div-一个img-如何让img在div中-垂直居中" class="headerlink" title="97.给定一个宽高未知的div,一个img,如何让img在div中,垂直居中"></a>97.给定一个宽高未知的div,一个img,如何让img在div中,垂直居中</h3><p>最简单的方法 使用弹性布局 把div设置display:flex    justify(租死的快)-content: center; /<em>子元素水平居中</em>/<br>  align-items: center; /<em>子元素垂直居中</em>/</p>
+<h3 id="98rem原理"><a href="#98rem原理" class="headerlink" title="98rem原理"></a>98rem原理</h3><p>rem是css3一种新的长度单位,是根据html根元素的字体大小的来决定rem这个单位的大小<br>3es6新增的语法<br>const 常量 let局部变量<br>Promise Async(A醒)<br>箭头函数<br>对象解构数组解构<br>class<br>Set和Map(马pe)<br>函数参数默认值</p>
+<h3 id="99-promise是什么-以及它的用法"><a href="#99-promise是什么-以及它的用法" class="headerlink" title="99.promise是什么,以及它的用法?"></a>99.promise是什么,以及它的用法?</h3><p>Promise是异步编程的一种解决方案<br>作用<br>Promise是一种用于解决异步问题的思路、方案或者对象方式。<br>在js中，经常使用异步的地方是Ajax交互。<br>用法<br>首先，Promise是一个对象，因此，我们使用new的方式新建一个。<br>然后给它传一个函数作为参数，这个函数呢也有两个参数，<br>一个叫resolve(列骚)(决定)，一个叫reject(绿觉)(拒绝)，这两个参数也是函数。<br>紧接着，我们使用then来调用这个Promise：</p>
+<h3 id="100-使用箭头函数应注意什么？"><a href="#100-使用箭头函数应注意什么？" class="headerlink" title="100.使用箭头函数应注意什么？"></a>100.使用箭头函数应注意什么？</h3><p>　　（1）用了箭头函数，this就不是指向window，而是父级（指向是可变的）<br>　　（2）不能够使用arguments(o叫门)对象<br>　　（3）不能用作构造函数，这就是说不能够使用new命令，否则会抛出一个错误<br>　　（4）不可以使用yield(u)命令，因此箭头函数不能用作 Generator(生成器 珍妮累吃) 函数</p>
+<h3 id="101-什么是盒子模型-ie的盒子模型和w3c盒子模型的有什么区别"><a href="#101-什么是盒子模型-ie的盒子模型和w3c盒子模型的有什么区别" class="headerlink" title="101.什么是盒子模型,ie的盒子模型和w3c盒子模型的有什么区别?"></a>101.什么是盒子模型,ie的盒子模型和w3c盒子模型的有什么区别?</h3><p>盒子模型由内容、内边距、外边距、边框组成</p>
+<p>区别<br>w3c盒子模型的范围包括margin、border、padding、content,并且content部分不包含其他部分<br>IE盒子模型的范围包括margin、border、padding、content,和w3c盒子模型不同的是，IE盒子模型的content部分包含了padding和border</p>
+<h3 id="102-工厂模式-原型模式-构造函数模式的有缺点是什么"><a href="#102-工厂模式-原型模式-构造函数模式的有缺点是什么" class="headerlink" title="102.工厂模式 原型模式  构造函数模式的有缺点是什么?"></a>102.工厂模式 原型模式  构造函数模式的有缺点是什么?</h3><p>工厂模式的优点<br>  工厂模式解决了创建多个相似对象的问题。<br>工厂模式的缺点<br>  没有解决对象识别的问题（即怎样知道一个对象的类型）。<br>创建的对象无法判断类型</p>
+<p>构造函数的优点<br>  创建自定义的构造函数意味着将来可以将它的实例标识为一种特定的类型；而这正是构造函数模式胜过工厂模式的地方<br>构造函数的缺点<br>  使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍。</p>
+<p>原型模式的优点<br>  使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。<br>原型模式的缺点<br>  原型中所有属性是被很多实例共享的，这种共享对于函数非常合适。然而，对于包含引用类型值的属性来说，问题就比较大了</p>
+<h3 id="103-你知道状态码200跟304是什么吗？"><a href="#103-你知道状态码200跟304是什么吗？" class="headerlink" title="103.你知道状态码200跟304是什么吗？"></a>103.你知道状态码200跟304是什么吗？</h3><p>200是正常，304是内容没有修改。</p>
+<p>态码200：请求已成功，请求所希望的响应头或数据体将随此响应返回。即返回的数据为全量的数据，如果文件不通过GZIP压缩的话，文件是多大，则要有多大传输量。</p>
+<p>状态码304：如果客户端发送了一个带条件的 GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码。即客户端和服务器端只需要传输很少的数据量来做文件的校验，如果文件没有修改过，则不需要返回全量的数据。</p>
+<h3 id="104-Vue里面的computed和watch是什么？有什么区别"><a href="#104-Vue里面的computed和watch是什么？有什么区别" class="headerlink" title="104.Vue里面的computed和watch是什么？有什么区别"></a>104.Vue里面的computed和watch是什么？有什么区别</h3><p>watch：主要是监听数据，监听props,data,computed内的数据是否发生了变化，然后它还提供两个参数（new,old）,提供你观察变化之前的值和变化之后的值，所以watch更多的操作是在于【观察】上，所以再外面需要监控数据变化或者还要执行异步操作的时候，最好是使用watch</p>
+<p>computed：主要是处理【逻辑运算】，而且computed是可以缓存的，这样就可以避免每次计算都重新获取值，提高了效率</p>
+<h3 id="105-简单介绍一下vue-router？"><a href="#105-简单介绍一下vue-router？" class="headerlink" title="105.简单介绍一下vue-router？"></a>105.简单介绍一下vue-router？</h3><p>Vue Router 是 Vue.js 官方的路由管理器。它和 Vue.js 的核心深度集成，让构建单页面应用变得易如反掌</p>
+<h3 id="106-你能描述一下渐进增强和优雅降级之间的不同吗"><a href="#106-你能描述一下渐进增强和优雅降级之间的不同吗" class="headerlink" title="106.你能描述一下渐进增强和优雅降级之间的不同吗?"></a>106.你能描述一下渐进增强和优雅降级之间的不同吗?</h3><p>渐进增强就是对浏览器的版本向上兼容</p>
+<p>优雅降级就是对浏览器的版本向下兼容</p>
+<h3 id="107-vue和vue-cli的区别？"><a href="#107-vue和vue-cli的区别？" class="headerlink" title="107.vue和vue-cli的区别？"></a>107.vue和vue-cli的区别？</h3><p>vue是一套用于构建用户界面的渐进式框架</p>
+<p>Vue CLI 是一个基于 Vue.js 进行快速开发的完整系统<br>Vue CLI 致力于将 Vue 生态中的工具基础标准化。<br>它确保了各种构建工具能够基于智能的默认配置即可平稳衔接，<br>这样你可以专注在撰写应用上，而不必花好几天去纠结配置的问题<br>。与此同时，它也为每个工具提供了调整配置的灵活性，无需 eject。</p>
+<h3 id="108-Vue的生命周期是哪些？"><a href="#108-Vue的生命周期是哪些？" class="headerlink" title="108.Vue的生命周期是哪些？"></a>108.Vue的生命周期是哪些？</h3><p>beforeCreate   创建前 (数据绑定前)</p>
+<p>created   创建</p>
+<p>beforeMount 挂载前</p>
+<p>mounted挂载</p>
+<p>beforeUpdate更新前</p>
+<p>updated 更新</p>
+<p>beforeDestroy 销毁前</p>
+<p>destroyed 销毁</p>
+<h3 id="109-什么是事件代理"><a href="#109-什么是事件代理" class="headerlink" title="109.什么是事件代理"></a>109.什么是事件代理</h3><p>事件委托（delegate(爹累个)）也称为事件托管或事件代理就是把目标节点的事件绑定到祖先节点上。这种简单而优雅的事件注册方式是基于事件传播过程中，逐层冒泡总能被祖先节点捕获。</p>
+<p>这样做的好处：优化代码，提升运行性能，真正把 HTML 和 JavaScript 分离，也能防止出现在动态添加或删除节点过程中注册的事件丢失的现象。。</p>
+<h3 id="110-Vue里面的computed和watch是什么？有什么区别"><a href="#110-Vue里面的computed和watch是什么？有什么区别" class="headerlink" title="110.Vue里面的computed和watch是什么？有什么区别"></a>110.Vue里面的computed和watch是什么？有什么区别</h3><p>computed(看票切) 计算属性 不支持异步  缓存<br>computed 主要是处理【逻辑运算】<br>　当一个属性受多个属性影响的时候就需要用到computed<br>　最典型的例子： 购物车商品结算的时候<br>watch (握持) 数据监听   支持异步 不缓存<br>watch：主要是监听数据<br>当一条数据影响多条数据的时候就需要用watch<br>搜索数据</p>
+<h3 id="111-简单说一下什么是插入排序"><a href="#111-简单说一下什么是插入排序" class="headerlink" title="111.简单说一下什么是插入排序"></a>111.简单说一下什么是插入排序</h3><p>插入排序是除冒泡排序外比较出名的数组排序方法,<br>和冒泡排序一样,用来解决数组内元素按照由大到小(或者由小到大)的问题<br>的—-当然,首先这个数组内的元素首先可以被比较.</p>
+<h3 id="112-举例下canvas里用到的api"><a href="#112-举例下canvas里用到的api" class="headerlink" title="112..举例下canvas里用到的api"></a>112..举例下canvas里用到的api</h3><p>fillRect 绘制矩形<br>clearRect 清除矩形区域<br>arc 绘制圆<br> 绘制线段 moveTo 第一条   lineTo第二条以后<br>drawImage 绘制图像<br>fillTex绘制文字<br>save() 保存<br>restore<br>路径 beginPath()  开启路径<br>context.closePath()  关闭路径</p>
+<h3 id="113-http请求的步骤是什么？"><a href="#113-http请求的步骤是什么？" class="headerlink" title="113.http请求的步骤是什么？"></a>113.http请求的步骤是什么？</h3><p>（1）建立TCP连接<br>（2） Web浏览器向Web服务器发送请求命令<br>（3） Web服务器应答<br>（4）Web服务器关闭TCP连接<br>（5）浏览器接受到服务器响应的数据</p>
+<h3 id="3-Es6版本的js如何做到去重？"><a href="#3-Es6版本的js如何做到去重？" class="headerlink" title="3.Es6版本的js如何做到去重？"></a>3.Es6版本的js如何做到去重？</h3><p>es6中新增了set类型的数据，自动去掉重复的数据<br>let arr=[1,2,3,1,2,4,3,3,5];<br>console.log(new Set(arr)) //你会发现输出的已经去重了，但是，返回的是个对象，需要用到Array.from()<br>Array.from()的作用是是可以把类数组对象转化为数组。<br>Array.from(new Set(arr)) 输出[1,2,3,4,5]</p>
+<h3 id="115-Vue的-v-if-和v-show的区别？"><a href="#115-Vue的-v-if-和v-show的区别？" class="headerlink" title="115.Vue的 v-if 和v-show的区别？"></a>115.Vue的 v-if 和v-show的区别？</h3><p>v-if是生成和去除元素<br>v-show是显示和隐藏元素</p>
+<h3 id="116-vue的双向绑定原理？"><a href="#116-vue的双向绑定原理？" class="headerlink" title="116.vue的双向绑定原理？"></a>116.vue的双向绑定原理？</h3><p>vue实现数据双向绑定的原理就是用Object.defineproperty()(跌fi p落p t)重新定义<br>（set方法）对象设置属性值和（get方法）获取属性值的操纵来实现的</p>
+<h3 id="117-怎么提高前端性能？"><a href="#117-怎么提高前端性能？" class="headerlink" title="117.怎么提高前端性能？"></a>117.怎么提高前端性能？</h3><ol>
+<li>重复的HTTP请求数量应尽量减少</li>
+<li>压缩Javascript、CSS代码</li>
+<li>在文件头部放置css样式的定义</li>
+<li>在文件末尾放Javascript脚本</li>
+<li>css、javascript改由外部调用</li>
+<li>尽可能减少DCOM元素</li>
+<li>避免使用CSS脚本(CSS Expressions)</li>
+<li>添加文件过期或缓存头</li>
+<li>使用CDN(Content Delivery Network)网络加速</li>
+<li>服务器启用gzip压缩功能</li>
+<li>Ajax采用缓存调用</li>
+<li>Ajax调用尽量采用GET方法调用</li>
+<li>养成良好的开发维护习惯，尽量避免脚本重复调用</li>
+<li>缩减iframe的使用，如无必要，尽量不要使用</li>
+<li>优化图片文件(缩略图)</li>
+<li>说一下TCP三次握手 ？<br>建立连接、数据传输和连接释放。<br>　TCP连接建立过程中要解决以下三个问题：</li>
+</ol>
+<p>　　（１）：要使每一方都能够确认对方的存在。</p>
+<p>　　（２）：要允许双方协商一些参数</p>
+<p>　　（３）：能够对运输实体资源进行分配</p>
+<h3 id="119-简单介绍一下vue-router？"><a href="#119-简单介绍一下vue-router？" class="headerlink" title="119.简单介绍一下vue-router？"></a>119.简单介绍一下vue-router？</h3><p>Vue Router 是 Vue.js 官方的路由管理器。它和 Vue.js 的核心深度集成，让构建单页面应用变得易如反掌<br>其实就是一个url和组件之间的映射关系，当我们访问不同的url的时候在页面渲染不同的组件<br>hash 模式<br>History 模式<br>在vue-router中默认使用的是hash模式，在hash模式下，使用hash来模拟一个完成的url，hash即url中’#’和’?’之间的内容，当hash改变时，页面不会重新刷新，从而到达不刷新页面改变视图的目的。<br>当然由于种种原因，我们还可以使用history模式，用那种模式还是看个人习惯吧，history模式美观，确实是比hash要好一些。</p>
+<h3 id="120-构造函数的优缺点？"><a href="#120-构造函数的优缺点？" class="headerlink" title="120. 构造函数的优缺点？"></a>120. 构造函数的优缺点？</h3><p>构造函数的优点<br>  创建自定义的构造函数意味着将来可以将它的实例标识为一种特定的类型；而这正是构造函数模式胜过工厂模式的地方<br>构造函数的缺点<br>  使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍。</p>
+<h3 id="121-vue虚拟dom的作用？"><a href="#121-vue虚拟dom的作用？" class="headerlink" title="121.vue虚拟dom的作用？"></a>121.vue虚拟dom的作用？</h3><p>所谓的Virtual dom，也就是我们常说的虚拟节点，它是通过JS的Object对象模拟DOM中的节点，然后再通过特定的render(卵的)方法将其渲染成真实的DOM的节点。<br>使用Virtual(ve秋) Dom（虚拟DOM）来更新DOM节点，提升渲染性能。<br>当用传统的方式操作DOM的时候，浏览器会从构建DOM树开始从头到尾执行一遍流程，效率很低。而虚拟DOM是用javascript对象表示的，而操作javascript是很简便高效的。虚拟DOM和真正的DOM有一层映射关系，很多需要操作DOM的地方都会去操作虚拟DOM，最后统一一次更新DOM。因而可以提高性能。</p>
+<h3 id="122-虚拟DOM的Diff算法"><a href="#122-虚拟DOM的Diff算法" class="headerlink" title="122.虚拟DOM的Diff算法"></a>122.虚拟DOM的Diff算法</h3><p>DOM Diff指的是通过Diff算法去比较虚拟DOM的变化<br>虚拟DOM中，在DOM的状态发生变化时，虚拟DOM会进行Diff运算，来更新只需要被替换的DOM，而不是全部重绘。</p>
+<h3 id="123-真实DOM和虚拟DOM的区别"><a href="#123-真实DOM和虚拟DOM的区别" class="headerlink" title="123.真实DOM和虚拟DOM的区别"></a>123.真实DOM和虚拟DOM的区别</h3><p>虚拟DOM不会进行排版与重绘操作<br>真实DOM频繁排版与重绘的效率是相当低的<br>虚拟DOM进行频繁修改，然后一次性比较并修改真实DOM中需要改的部分，最后并在真实DOM中进行排版与重绘，减少过多DOM节点排版与重绘损耗<br>虚拟DOM有效降低大面积（真实DOM节点）的重绘与排版，因为最终与真实DOM比较差异，可以只渲染局部</p>
+<h3 id="124-怎么提高前端性能？"><a href="#124-怎么提高前端性能？" class="headerlink" title="124.怎么提高前端性能？"></a>124.怎么提高前端性能？</h3><ol>
+<li>重复的HTTP请求数量应尽量减少</li>
+<li>压缩Javascript、CSS代码</li>
+<li>在文件头部放置css样式的定义</li>
+<li>在文件末尾放Javascript脚本</li>
+<li>css、javascript改由外部调用</li>
+<li>尽可能减少DCOM元素</li>
+<li>避免使用CSS脚本(CSS Expressions)</li>
+<li>添加文件过期或缓存头</li>
+<li>使用CDN(Content Delivery Network)网络加速</li>
+<li>服务器启用gzip压缩功能</li>
+<li>Ajax采用缓存调用</li>
+<li>Ajax调用尽量采用GET方法调用</li>
+<li>养成良好的开发维护习惯，尽量避免脚本重复调用</li>
+<li>缩减iframe的使用，如无必要，尽量不要使用</li>
+<li>优化图片文件(缩略图)</li>
+</ol>
+<h3 id="125-说一下TCP三次握手-？"><a href="#125-说一下TCP三次握手-？" class="headerlink" title="125.说一下TCP三次握手 ？"></a>125.说一下TCP三次握手 ？</h3><p>建立连接、数据传输和连接释放。<br>　TCP连接建立过程中要解决以下三个问题：</p>
+<p>　　（１）：要使每一方都能够确认对方的存在。</p>
+<p>　　（２）：要允许双方协商一些参数</p>
+<p>　　（３）：能够对运输实体资源进行分配</p>
+<h3 id="127-构造函数的优缺点？"><a href="#127-构造函数的优缺点？" class="headerlink" title="127. 构造函数的优缺点？"></a>127. 构造函数的优缺点？</h3><p>构造函数的优点<br>  创建自定义的构造函数意味着将来可以将它的实例标识为一种特定的类型；而这正是构造函数模式胜过工厂模式的地方<br>构造函数的缺点<br>  使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍。</p>
+<h3 id="128-vue虚拟dom的作用？"><a href="#128-vue虚拟dom的作用？" class="headerlink" title="128.vue虚拟dom的作用？"></a>128.vue虚拟dom的作用？</h3><p>所谓的Virtual dom，也就是我们常说的虚拟节点，它是通过JS的Object对象模拟DOM中的节点，然后再通过特定的render(卵的)方法将其渲染成真实的DOM的节点。<br>使用Virtual(ve秋) Dom（虚拟DOM）来更新DOM节点，提升渲染性能。<br>当用传统的方式操作DOM的时候，浏览器会从构建DOM树开始从头到尾执行一遍流程，效率很低。而虚拟DOM是用javascript对象表示的，而操作javascript是很简便高效的。虚拟DOM和真正的DOM有一层映射关系，很多需要操作DOM的地方都会去操作虚拟DOM，最后统一一次更新DOM。因而可以提高性能。</p>
+<h3 id="129-虚拟DOM的Diff算法"><a href="#129-虚拟DOM的Diff算法" class="headerlink" title="129.虚拟DOM的Diff算法"></a>129.虚拟DOM的Diff算法</h3><p>DOM Diff指的是通过Diff算法去比较虚拟DOM的变化<br>虚拟DOM中，在DOM的状态发生变化时，虚拟DOM会进行Diff运算，来更新只需要被替换的DOM，而不是全部重绘。</p>
+<h3 id="130-真实DOM和虚拟DOM的区别"><a href="#130-真实DOM和虚拟DOM的区别" class="headerlink" title="130.真实DOM和虚拟DOM的区别"></a>130.真实DOM和虚拟DOM的区别</h3><p>虚拟DOM不会进行排版与重绘操作<br>真实DOM频繁排版与重绘的效率是相当低的<br>虚拟DOM进行频繁修改，然后一次性比较并修改真实DOM中需要改的部分，最后并在真实DOM中进行排版与重绘，减少过多DOM节点排版与重绘损耗<br>虚拟DOM有效降低大面积（真实DOM节点）的重绘与排版，因为最终与真实DOM比较差异，可以只渲染局部</p>
+<h3 id="131-var、let、const之间的区别？"><a href="#131-var、let、const之间的区别？" class="headerlink" title="131.var、let、const之间的区别？"></a>131.var、let、const之间的区别？</h3><p>1.var<br>var相比let就是管的比较宽，他的值可以被内部修改。<br>2.let<br>let是es6中新增定义,带有块级作用域，只会在所定义块生效。<br>3.const<br>const用来定义常量(可以是字符串，数组，函数，对象等)，并且初始值不可为空，但他并不是不可更改的</p>
+<h3 id="132-如何规避在JavaScript中多开发造成的函数重名问题"><a href="#132-如何规避在JavaScript中多开发造成的函数重名问题" class="headerlink" title="132.如何规避在JavaScript中多开发造成的函数重名问题?"></a>132.如何规避在JavaScript中多开发造成的函数重名问题?</h3><p>命名空间<br>封闭空间<br>js模块化mvc（数据层、表现层、控制层）<br>seajs（如果了解的呢，可以说）<br>变量转换成对象的属性<br>对象化</p>
+<h3 id="133-工厂模式、原型模式、构造函数模式的优缺点是什么？"><a href="#133-工厂模式、原型模式、构造函数模式的优缺点是什么？" class="headerlink" title="133.工厂模式、原型模式、构造函数模式的优缺点是什么？"></a>133.工厂模式、原型模式、构造函数模式的优缺点是什么？</h3><p>1.工厂模式 原型模式  构造函数模式的有缺点是什么?<br>工厂模式的优点<br>  工厂模式解决了创建多个相似对象的问题。<br>工厂模式的缺点<br>  没有解决对象识别的问题（即怎样知道一个对象的类型）。<br>创建的对象无法判断类型</p>
+<p>构造函数的优点<br>  创建自定义的构造函数意味着将来可以将它的实例标识为一种特定的类型；而这正是构造函数模式胜过工厂模式的地方<br>构造函数的缺点<br>  使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍。</p>
+<p>原型模式的优点<br>  使用原型对象的好处是可以让所有对象实例共享它所包含的属性和方法。<br>原型模式的缺点<br>  原型中所有属性是被很多实例共享的，这种共享对于函数非常合适。然而，对于包含引用类型值的属性来说，问题就比较大了</p>
+<h3 id="134-在浏览器中输入URL并回车后都发生了什么？"><a href="#134-在浏览器中输入URL并回车后都发生了什么？" class="headerlink" title="134.在浏览器中输入URL并回车后都发生了什么？"></a>134.在浏览器中输入URL并回车后都发生了什么？</h3><p>域名解析（获得IP地址）<br>向WEB服务器发送HTTP请求<br>服务器处理请求<br>服务器返回HTTP响应<br>浏览器显示页面信息</p>
+<h3 id="135-预加载和懒加载的原理是什么？"><a href="#135-预加载和懒加载的原理是什么？" class="headerlink" title="135.预加载和懒加载的原理是什么？"></a>135.预加载和懒加载的原理是什么？</h3><p>懒加载和预加载的定义与区别<br>答：1.预加载</p>
+<p>1.1：预加载的理解<br>在加载的时候预先吧所有资源提前加载</p>
+<p>1.2:预加载的使用场景<br>需要追求运行效率的项目中，并且内存消耗率非常低的业务逻辑。用户可以体验非常极致的加载和刷新效果，使用预加载可以做到非常好的效果。</p>
+<p>2 懒加载</p>
+<p>2.1:懒加载的理解<br>懒加载就是说我们延迟他的加载，在我们使用资源的时候在进行加载</p>
+<p>2.2:懒加载的使用场景<br>我们在进行一些页面上有大量的图片资源，图片资源非常庞大，小的几kb打的几兆都有，<br>在这种情况下我们如果说进行一次性加载所有的资源不仅用户会等待很久而且还会造成<br>页面卡顿等状况。</p>
+<p> 懒加载和预加载的区别<br>首先懒加载和预加载是完全不同的，一个是提前加载资源，一个是延迟加载或者不加载，<br>懒加载会缓解一些服务器端和客户端内存的压力，预加载则会增加服务器端和客户端的<br>压力，但是两种加载模式有各自的适用场景各有自己的优势。</p>
+<h3 id="136-面向对象理解"><a href="#136-面向对象理解" class="headerlink" title="136.面向对象理解"></a>136.面向对象理解</h3><p>继承 封装 多态 性能高，高可维护性<br>所有面向对象语言对象理解都一样<br>java<br>javascript<br>php<br>python<br>asp<br>jsp</p>
+<h3 id="137-深拷贝与浅拷贝-跟数据类型关系-跟堆与栈"><a href="#137-深拷贝与浅拷贝-跟数据类型关系-跟堆与栈" class="headerlink" title="137.深拷贝与浅拷贝 跟数据类型关系 跟堆与栈"></a>137.深拷贝与浅拷贝 跟数据类型关系 跟堆与栈</h3><p>简单说,就是假设B复制A,当修改A值时,看B是否也发生变化.<br>如果B也跟改变.说明是浅拷贝<br>如果B不发生改变,说明是深拷贝<br>深拷贝针对的是基本数据类型,数字 字符串 布尔类型等<br>浅拷贝针对的是引用数据类型,数组 函数 对象</p>
+<p>栈主要存储基本数据类型<br>堆主要存储引用数据类型<br>栈会存储堆地址进行引用</p>
+<p>堆类型的数据使用的是浅拷贝<br>栈类型的数据使用的是深拷贝</p>
+<h3 id="138-jquery优缺点"><a href="#138-jquery优缺点" class="headerlink" title="138.jquery优缺点"></a>138.jquery优缺点</h3><p>1.轻量级库（注意：它不是框架）<br>2.简化DOM操作，强大的选择器。方法封装<br>3.完善ajax，动画效果，插件封装，事件处理机制<br>4.出色浏览器兼容。js写法兼容</p>
+<p>缺点，只是一个库，开发大型前端网站比较吃力。</p>
+<p>后面vue.js框架 </p>
+<h3 id="139-vue中params与query区别"><a href="#139-vue中params与query区别" class="headerlink" title="139.vue中params与query区别"></a>139.vue中params与query区别</h3><p> a.query更加类似于我们ajax中get传参，params则类似于post，说的再简单一点，前者在浏览器地址栏中显示参数，后者则不显示<br>b.query要用path来引入，params要用name来引入，接收参数都是类似的<br>c.当刷新页面后params中的数据就没有了，query不会</p>
+<h3 id="140-Vue中this-emit是异步函数"><a href="#140-Vue中this-emit是异步函数" class="headerlink" title="140.Vue中this.$emit是异步函数"></a>140.Vue中this.$emit是异步函数</h3><p>，执行在同步函数之后，如果要在$emit触<br>发后监听父级传过来的props的变化，需要子级在emit后面设置$nextTick，<br>实时监听属性值的变化</p>
+<h3 id="141-Vue路由哈希设置哈希配置和h5的history配置的区别？"><a href="#141-Vue路由哈希设置哈希配置和h5的history配置的区别？" class="headerlink" title="141.Vue路由哈希设置哈希配置和h5的history配置的区别？"></a>141.Vue路由哈希设置哈希配置和h5的history配置的区别？</h3><p> 1.hash模式url里面永远带着#号，我们在开发当中默认使用这个模式。<br>2.那么什么时候要用history模式呢？如果用户考虑url的规范那么就需要使用history模式，因为history模式没有#号，是个正常的url适合推广宣传。<br>当然其功能也有区别，比如我们在开发app的时候有分享页面，那么这个分享出去的页面就是用vue或是react做的，咱们把这个页面分享到第三方的app里，有的app里面url是不允许带有#号的<br>，所以要将#号去除那么就要使用history模式，但是使用history模式还有一个问题就是，在访问二级页面的时候，做刷新操作，会出现404错误，<br>那么就需要和后端人配合让他配置一下apache或是nginx的url重定向，重定向到你的首页路由上就ok啦。</p>
+<h3 id="142-在vue中如何处理内存泄漏的："><a href="#142-在vue中如何处理内存泄漏的：" class="headerlink" title="142.在vue中如何处理内存泄漏的："></a>142.在vue中如何处理内存泄漏的：</h3><p>如果在mounted/created 钩子中绑定了DOM/BOM 对象中的事件，需要在beforeDestroy 中做对应解绑处理<br>如果在mounted/created 钩子中使用了第三方库初始化，需要在beforeDestroy 中做对应销毁处理<br>如果组件中使用了定时器，需要在beforeDestroy 中做对应销毁处理<br>模板中不要使用表达式来绑定到特定的处理函数，这个逻辑应该放在处理函数中<br>如果在mounted/created 钩子中使用了$on，需要在beforeDestroy 中做对应解绑($off)处理<br>某些组件在模板中使用 事件绑定可能会出现泄漏，使用$on 替换模板中的绑定</p>
+<h3 id="143-watch和computed的区别-补充"><a href="#143-watch和computed的区别-补充" class="headerlink" title="143.watch和computed的区别  补充"></a>143.watch和computed的区别  补充</h3><p>watch：不会在页面第一次渲染就触发，只会在监听的属性发生改变时才会触发；<br>computed：计算属性有两个方法get、set，get获取当前计算属性所触发的函数，set设置当前计算属性所触发的函数。</p>
+<h3 id="144-seo-优化"><a href="#144-seo-优化" class="headerlink" title="144.seo 优化"></a>144.seo 优化</h3><p>SEO（Search Engine Optimization）：汉译为搜索引擎优化。是一种方式：利用搜索引擎的规则提高网站在有关搜索引擎内的自然排名。<br>影响自然排名的两大方面：<br>关键词匹配度：关键词设置及分布，关键词标题及描述的设置等好几个因素决定；<br>网站综合因素：域名、空间、网站系统、网站内容质量、网站更新频率、链接等有好几十个因素。</p>
+<h3 id="145-提高前端性能-补充"><a href="#145-提高前端性能-补充" class="headerlink" title="145.提高前端性能  补充"></a>145.提高前端性能  补充</h3><p>提高页面加载速度。 能用css解决的不用背景图片，背景图片也尽量压缩大小，<br>使用CSS Sprites，使用background-position找到需要的图片位置。<br>可以减少HTTP请求数，提高网页加载速度</p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                    <a class="donate" href="javascript:;"><i class="fa fa-bitcoin"></i> 打赏</a>
+                
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" rel="tag">常见问题</a>
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2021-10-28</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 常用正则表达式" href="/2021/07/20/zhengze/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+        <div id="v-comments"></div>
+<script src='https://unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#v-comments',
+        appId: 'a00YxbeF3MtTpt3uN927RDOv-gzGzoHsz',
+        appKey: 'SRh73vTzvgvCKfOR8d5JbbOq',
+        visitor: 'true',
+        avatar: 'monsterid'
+    })
+</script>
+<noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://valine.js.org/">comments powered by
+        Valine.</a></noscript>
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">JokerLZL的博客</p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" style="font-size: 0.6em;">常见问题</a> <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 0.6em;">插件</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 0.6em;">正则表达式</a> <a href="/tags/%E8%96%9B%E4%B9%8B%E8%B0%A6/" style="font-size: 0.6em;">薛之谦</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/" style="font-size: 0.6em;">项目经验</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2021/10/26/problem/"><i class="fa  fa-book"></i> 常见问题</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/20/zhengze/"><i class="fa  fa-book"></i> 常用正则表达式</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/20/plugIn/"><i class="fa  fa-book"></i> VScode插件分享</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/20/hello-world/"><i class="fa  fa-book"></i> 项目经历</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2021/07/19/ido/"><i class="fa  fa-book"></i> 薛之谦</a>
+            
+          
+        
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <!-- <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:1216569742@qq.com"><i class="fa fa-envelope"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://t.me/CandyUnion"><i class="fa fa-telegram"></i></a></li>
+                        
+                        
+                        
+                        <li><a target="_blank" rel="me" href="https://nya.one/@Candinya"><i class="fa fa fa-share-alt-square"></i></a></li>
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/Candinya"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul> -->
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2021 JokerLZL 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by JokerLZL.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <!--
+ * @Author: your name
+ * @Date: 2021-07-10 14:01:47
+ * @LastEditTime: 2021-07-10 15:24:20
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \oldappc:\Users\Administrator\Desktop\Myblog\themes\Kratos-Rebirth\layout\_partial\after-footer.ejs
+-->
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<script>const notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async type="text/javascript" src="/js/snow.min.js"></script>
+    </div>
+
+<script async src="/js/candy.min.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <!-- require APlayer -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="879917985"
+        order="list"
+        fixed="true"
+        autoplay="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/layui-src@2.5.5/dist/layui.all.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+<style>
+    .aplayer.aplayer-fixed{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        z-index: 99999999;
+        overflow: visible;
+        max-width: 400px;
+        box-shadow: none;
+    }
+</style>
+    </body>
+</html>
